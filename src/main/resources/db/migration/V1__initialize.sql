@@ -1,6 +1,8 @@
 create table customers (
     id                      bigserial,
     name                    varchar(255) not null,
+    phone                   varchar(255) not null,
+    address                 varchar(255) not null,
     primary key (id)
 );
 
@@ -25,11 +27,11 @@ create table order_items (
     quantity                int
 );
 
-insert into customers (name)
+insert into customers (name, phone, address)
 values
-('Bob'),
-('John'),
-('Jack');
+('Bob', '8800000001', 'address1'),
+('John','8800000002', 'address2'),
+('Jack','8800000003', 'address3');
 
 insert into products (title, price)
 values

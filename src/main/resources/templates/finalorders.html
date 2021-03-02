@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -20,14 +20,37 @@
     <table class="table table-hover">
         <thead class="thead-dark">
         <tr>
-            <th>Имя</th>
-            <th>Phone Number</th>
-            <th>Address</th>
+            <th>Название</th>
+            <th>Количество</th>
+            <th>Цена</th>
         </tr>
+
+        <tr th:each="oi : ${@cart.items}">
+            <td th:text="${oi.product.title}"/>
+            <td>
+                <span th:text="${oi.quantity}"/>
+            </td>
+            <td th:text="${oi.quantity + ' x ' + oi.pricePerProduct + ' = ' + oi.price}"/>
+        </tr>
+
+
+        <tr>
+            <th>Имя клиента</th>
+            <th>Телефон</th>
+            <th>адрес</th>
+        </tr>
+
+        <tr th:each="c : ${customer}">
+            <td th:text="${c.name}"/>
+            <td th:text="${c.phone}"/>
+            <td th:text="${c.address}"/>
+        </tr>
+
         </thead>
         <tbody>
         </tbody>
     </table>
+    <a class="btn btn-primary">Оформить заказ</a>
 </div>
 
 </body>

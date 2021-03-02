@@ -19,4 +19,10 @@ public class OrderController {
         model.addAttribute("orders", orderService.findAll());
         return "orders";
     }
+
+
+    @GetMapping("/finalorders/")
+    public String finalOrder(){
+        return "finalorders";
+    }
 }

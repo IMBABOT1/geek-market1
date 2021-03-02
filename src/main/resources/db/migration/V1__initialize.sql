@@ -14,7 +14,8 @@ create table products (
 
 create table orders (
     id                      bigserial primary key,
-    customer_id             bigint references customers(id),
+    title                   varchar(255) not null,
+    quantity                int,
     price                   int
 );
 
@@ -26,6 +27,14 @@ create table order_items (
     price_per_product       int,
     quantity                int
 );
+
+insert into orders (title, quantity, price)
+values
+('title1', '123', '123'),
+('title2','321', '321'),
+('title3','213', '213');
+
+
 
 insert into customers (name, phone, address)
 values

@@ -19,39 +19,6 @@
     <h1>Оформление заказа</h1>
     <table class="table table-hover">
 
-        <thead class="thead-dark">
-        <tr>
-            <th>Название</th>
-            <th>Количество</th>
-            <th>Цена</th>
-        </tr>
-
-        <tr th:each="oi : ${@cart.items}">
-            <td th:text="${oi.product.title}"/>
-            <td>
-                <span th:text="${oi.quantity}"/>
-            </td>
-            <td th:text="${oi.quantity + ' x ' + oi.pricePerProduct + ' = ' + oi.price}"/>
-        </tr>
-
-        <form method="get" th:action="@{/orders/save/}">
-            <tr th:each="oi : ${@cart.items}">
-            <div class="form-group col-md-6">
-                <label for="titleInput">Название</label>
-                <input class="form-control" th:value="${oi.product.title}" name="title" type="text" id="titleInput">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="minPriceInput">Количество</label>
-                <input class="form-control" th:value="${oi.quantity}" name="min_price" type="number" id="minPriceInput">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="maxPriceInput">Цена</label>
-                <input class="form-control" th:value="${oi.price}" name="max_price" type="number" id="maxPriceInput">
-            </div>
-
-            <button class="btn btn-primary" type="submit">Применить</button>
-            <a class="btn btn-primary" th:href="@{/products}">Очистить фильтр</a>
-        </form>
 
         <tr>
             <th>Имя клиента</th>
@@ -65,13 +32,31 @@
             <td th:text="${c.address}"/>
         </tr>
 
+
+        <form method="POST" th:action="@{/orders/save/}">
+            <tr th:each="oi : ${@cart.items}">
+            <div class="form-group col-md-6">
+                <label for="title">Название</label>
+                <input class="form-control" th:value="${oi.product.title}" name="title" type="text" id="title">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="quantity">Количество</label>
+                <input class="form-control" th:value="${oi.quantity}" name="quantity" type="number" id="quantity">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="price">Цена</label>
+                <input class="form-control" th:value="${oi.price}" name="price" type="number" id="price">
+            </div>
+            <button class="btn btn-primary" type="submit">Оформить заказ</button>
+        </form>
+
+
         </thead>
         <tbody>
         </tbody>
         </form>
     </table>
 
-    <a class="btn btn-primary">Оформить заказ</a>
 </div>
 
 </body>

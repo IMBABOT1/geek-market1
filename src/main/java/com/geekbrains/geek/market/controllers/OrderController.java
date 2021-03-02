@@ -1,6 +1,7 @@
 package com.geekbrains.geek.market.controllers;
 
 import com.geekbrains.geek.market.entities.Customer;
+import com.geekbrains.geek.market.entities.Order;
 import com.geekbrains.geek.market.exceptions.ResourceNotFoundException;
 import com.geekbrains.geek.market.services.CustomerService;
 import com.geekbrains.geek.market.services.OrderService;
@@ -9,6 +10,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -33,8 +36,9 @@ public class OrderController {
     }
 
 
-    @GetMapping("/save/")
-    public String finalOrder1(){
-        return "finalorders";
+    @PostMapping("/save/")
+    public String finalOrder1(@ModelAttribute Order order){
+        orderService.saveOrUpdate(order);
+        return "redirect:/products";
     }
 }

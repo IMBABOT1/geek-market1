@@ -34,6 +34,24 @@
             <td th:text="${oi.quantity + ' x ' + oi.pricePerProduct + ' = ' + oi.price}"/>
         </tr>
 
+        <form method="get" th:action="@{/orders/save/}">
+            <tr th:each="oi : ${@cart.items}">
+            <div class="form-group col-md-6">
+                <label for="titleInput">Название</label>
+                <input class="form-control" th:value="${oi.product.title}" name="title" type="text" id="titleInput">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="minPriceInput">Количество</label>
+                <input class="form-control" th:value="${oi.quantity}" name="min_price" type="number" id="minPriceInput">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="maxPriceInput">Цена</label>
+                <input class="form-control" th:value="${oi.price}" name="max_price" type="number" id="maxPriceInput">
+            </div>
+
+            <button class="btn btn-primary" type="submit">Применить</button>
+            <a class="btn btn-primary" th:href="@{/products}">Очистить фильтр</a>
+        </form>
 
         <tr>
             <th>Имя клиента</th>

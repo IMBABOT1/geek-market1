@@ -18,6 +18,8 @@
     <div th:replace="~{navigation :: navigation(finalorders)}" />
     <h1>Оформление заказа</h1>
     <table class="table table-hover">
+
+        <form th:action="@{/orders/save/}" th:object="${customer}" method="GET">
         <thead class="thead-dark">
         <tr>
             <th>Название</th>
@@ -26,6 +28,7 @@
         </tr>
 
         <tr th:each="oi : ${@cart.items}">
+            <input th:field="*{oi.product.title}"
             <td th:text="${oi.product.title}"/>
             <td>
                 <span th:text="${oi.quantity}"/>
@@ -49,7 +52,9 @@
         </thead>
         <tbody>
         </tbody>
+        </form>
     </table>
+
     <a class="btn btn-primary">Оформить заказ</a>
 </div>
 

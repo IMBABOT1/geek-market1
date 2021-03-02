@@ -31,4 +31,10 @@ public class OrderController {
         model.addAttribute("customer", c);
         return "finalorders";
     }
+
+
+    @GetMapping("/save/")
+    public String finalOrder1(){
+        return "finalorders";
+    }
 }
